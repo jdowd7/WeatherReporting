@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace WeatherReporting.Enum
+namespace WeatherReporting.Common.Enum
 {
   public enum State
   {

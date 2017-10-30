@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WeatherReporting.Model;
+using WeatherReporting.Domain.Model;
 using WeatherReporting.Orchestration.Interface;
 
 namespace WeatherReporting.Orchestration.Service

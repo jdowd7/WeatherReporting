@@ -1,14 +1,14 @@
 ﻿using System;
-using System.CodeDom;
 using System.ComponentModel.DataAnnotations;
-using WeatherReporting.Enum;
+using WeatherReporting.Common.Enum;
+using WeatherReporting.Common.Validation;
 
-namespace WeatherReporting.Model
+namespace WeatherReporting.Domain.Model
 {
   public class WeatherData
   {
     [Required]
-    [EnumDataType(typeof(State), ErrorMessage = "Not a valid state.")]
+    [ContainsState]
     public string State { get; set; }
 
     [Required]

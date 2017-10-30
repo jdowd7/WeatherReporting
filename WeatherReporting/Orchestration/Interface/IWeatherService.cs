@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WeatherReporting.Model;
+using WeatherReporting.Domain.Model;
 
 namespace WeatherReporting.Orchestration.Interface
 {

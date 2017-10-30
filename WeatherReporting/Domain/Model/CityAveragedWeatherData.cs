@@ -1,4 +1,4 @@
-﻿namespace WeatherReporting.Model
+﻿namespace WeatherReporting.Domain.Model
 {
   public class CityAveragedWeatherData
   {
