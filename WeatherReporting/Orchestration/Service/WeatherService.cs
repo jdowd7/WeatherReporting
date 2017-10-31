@@ -81,12 +81,12 @@ namespace WeatherReporting.Orchestration.Service
       if (!WeatherDataPointCollection.ContainsKey(nameStateTuple))
       {
         // if it doesn't, add it to the dictionary
-        WeatherDataPointCollection.Add(nameStateTuple, new TemperatureStoreBusiObj(weatherDataPoint.HighTemp, weatherDataPoint.LowTemp));
+        WeatherDataPointCollection.Add(nameStateTuple, new TemperatureStoreBusiObj(weatherDataPoint.HighTemp, weatherDataPoint.LowTemp, weatherDataPoint.Date));
       }
       else
       {
         // if it does, look up the key and add to its list
-        WeatherDataPointCollection[nameStateTuple].AddTemperaturePair(weatherDataPoint.HighTemp, weatherDataPoint.LowTemp);
+        WeatherDataPointCollection[nameStateTuple].AddTemperaturePair(weatherDataPoint.HighTemp, weatherDataPoint.LowTemp, weatherDataPoint.Date);
       }
     }
 
@@ -106,7 +106,23 @@ namespace WeatherReporting.Orchestration.Service
     {
       var validationResults = new List<ValidationResult>();
       var context = new ValidationContext(typeof(WeatherData), null, null);
-      return Validator.TryValidateObject(typeof(WeatherData), context, validationResults, true);
+      var valResult = Validator.TryValidateObject(typeof(WeatherData), context, validationResults, true);
+
+      #if true
+      if (valResult)
+      {
+        //Indivial State Check, will kick out if not found
+        var stateContext = new ValidationContext(weatherDataPoint, null, null)
+        {
+          MemberName = "State"
+        };
+        var results = new List<ValidationResult>();
+        return Validator.TryValidateProperty(weatherDataPoint.State, stateContext, results);
+      }
+      return false;
+      #else
+      return valResult;
+      #endif
     }
   }
 }

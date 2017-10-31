@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace WeatherReporting.Domain.Business
@@ -8,18 +9,18 @@ namespace WeatherReporting.Domain.Business
   /// </summary>
   public class TemperatureStoreBusiObj
   {
-    public static List<decimal> HighTemperatureStore { get; private set; }
+    public static List<TemperatureDate> HighTemperatureStore { get; private set; }
 
-    public static List<decimal> LowTemperatureStore { get; private set; }
+    public static List<TemperatureDate> LowTemperatureStore { get; private set; }
 
     public static decimal HighTemperatureAverage { get; set; }
 
     public static decimal LowTemperatureAverage { get; set; }
 
-    public TemperatureStoreBusiObj(decimal firstHighTemp, decimal firstLowTemp)
+    public TemperatureStoreBusiObj(decimal firstHighTemp, decimal firstLowTemp, DateTime firstDate)
     {
-      HighTemperatureStore = new List<decimal> { firstHighTemp };
-      LowTemperatureStore = new List<decimal> { firstLowTemp };
+      HighTemperatureStore = new List<TemperatureDate> { new TemperatureDate(firstHighTemp, firstDate.Date) };
+      LowTemperatureStore = new List<TemperatureDate> { new TemperatureDate(firstLowTemp, firstDate.Date) };
       HighTemperatureAverage = firstHighTemp;
       LowTemperatureAverage = firstLowTemp;
     }
@@ -34,28 +35,39 @@ namespace WeatherReporting.Domain.Business
       return LowTemperatureAverage;
     }
 
-    public void AddTemperaturePair(decimal highTemp, decimal lowTemp)
+    public void AddTemperaturePair(decimal highTemp, decimal lowTemp, DateTime date)
     {
-      AddToHighTemperatureStore(highTemp);
-      AddToLowTemperatureStore(lowTemp);
+      AddToHighTemperatureStore(highTemp, date);
+      AddToLowTemperatureStore(lowTemp, date);
       RecalculateAverages();
     }
 
-    private void AddToHighTemperatureStore(decimal highTemp)
+    private void AddToHighTemperatureStore(decimal highTemp, DateTime date)
     {
-      HighTemperatureStore.Add(highTemp);
+      HighTemperatureStore.Add(new TemperatureDate(highTemp, date));
     }
 
-    private void AddToLowTemperatureStore(decimal lowTemp)
+    private void AddToLowTemperatureStore(decimal lowTemp, DateTime date)
     {
-      LowTemperatureStore.Add(lowTemp);
+      LowTemperatureStore.Add(new TemperatureDate(lowTemp, date));
     }
 
     private void RecalculateAverages()
     {
-      HighTemperatureAverage = HighTemperatureStore.Average();
-      LowTemperatureAverage = LowTemperatureStore.Average();
+      HighTemperatureAverage = HighTemperatureStore.Average(h => h.Temperature);
+      LowTemperatureAverage = LowTemperatureStore.Average(l => l.Temperature);
     }
 
-  }
+    public class TemperatureDate
+    {
+      public decimal Temperature { get; }
+      public DateTime Date { get; }
+
+      public TemperatureDate(decimal temperature, DateTime date)
+      {
+        Temperature = temperature;
+        Date = date;
+      }
+    }
+}
 }

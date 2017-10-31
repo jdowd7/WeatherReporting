@@ -19,7 +19,7 @@ namespace WeatherReporting.Domain.Model
     [DataType(DataType.Date, ErrorMessage = "Not a valid date.")]
     public DateTime Date { get; set; }
 
-    //TODO: HighTemp should be greater than LowTemp
+    //DONE: HighTemp should be greater than LowTemp
     [Required]
     [Range(typeof(decimal), "-459.67", "400", ErrorMessage = "Need valid temperature.")]
     public decimal HighTemp { get; set; }

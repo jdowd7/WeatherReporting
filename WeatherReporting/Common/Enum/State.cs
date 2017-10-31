@@ -4,6 +4,8 @@ namespace WeatherReporting.Common.Enum
 {
   public enum State
   {
+    [Description("Undefined")]
+    Undefined = 0,
     [Description("Alabama")]
     AL,
     [Description("Alaska")]
