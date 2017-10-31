@@ -2,7 +2,6 @@
 using SimpleInjector;
 using WeatherReporting.Orchestration.Interface;
 using WeatherReporting.Orchestration.Service;
-using Xunit.Abstractions;
 
 namespace WeatherReportingTest.Infrastucture
 {

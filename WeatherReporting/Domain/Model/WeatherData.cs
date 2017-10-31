@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using WeatherReporting.Common.Enum;
 using WeatherReporting.Common.Validation;
 
 namespace WeatherReporting.Domain.Model
