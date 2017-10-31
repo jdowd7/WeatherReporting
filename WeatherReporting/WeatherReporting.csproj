@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Common\Enum\Extensions\EnumExtensions.cs" />
     <Compile Include="Common\Validation\ContainsStateAttribute.cs" />
+    <Compile Include="Domain\Business\TemperatureStoreBusiObj.cs" />
     <Compile Include="Domain\Model\CityAveragedWeatherData.cs" />
     <Compile Include="Domain\Model\WeatherData.cs" />
     <Compile Include="Orchestration\Interface\IWeatherService.cs" />
@@ -57,5 +58,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
