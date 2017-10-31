@@ -17,7 +17,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void StateValidation_ValidStateGiven_ShouldReturnTrue()
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "Boulder",
         State = "Colorado",
@@ -25,14 +25,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = 45
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "State"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.State, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.State, context, results);
 
       // Assert
       validationResult.Should().BeTrue();
@@ -45,7 +45,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void StateValidation_InvalidStateGiven_ShouldReturnFalse()
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "Boulder",
         State = "NotColorado",
@@ -53,14 +53,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = 45
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "State"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.State, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.State, context, results);
 
       // Assert
       validationResult.Should().BeFalse();
@@ -77,7 +77,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void CityValidation_ValidCityGiven_ShouldReturnTrue()
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "Boulder",
         State = "Colorado",
@@ -85,14 +85,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = 45
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "City"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.City, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.City, context, results);
 
       // Assert
       validationResult.Should().BeTrue();
@@ -105,7 +105,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void CityValidation_256CharCityGiven_ShouldReturnFalse()
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "BouldercoloradoBouldercoloradoBouldercoloradoBouldercoloradoBouldercoloradoBouldercolorado" +
                "BouldercoloradoBouldercoloradoBouldercoloradoBouldercoloradoBouldercoloradoBouldercolorado" +
@@ -116,14 +116,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = 45
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "City"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.City, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.City, context, results);
 
       // Assert
       validationResult.Should().BeFalse();
@@ -143,7 +143,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void HighTempValidation_ValidTempGiven_ShouldReturnTrue(decimal highTemp)
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "Boulder",
         State = "NotColorado",
@@ -151,14 +151,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = 45
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "HighTemp"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.HighTemp, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.HighTemp, context, results);
 
       // Assert
       validationResult.Should().BeTrue();
@@ -173,7 +173,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void HighTempValidation_InvalidTempGiven_ShouldReturnFalse(decimal highTemp)
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "Boulder",
         State = "NotColorado",
@@ -181,14 +181,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = 45
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "HighTemp"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.HighTemp, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.HighTemp, context, results);
 
       // Assert
       validationResult.Should().BeFalse();
@@ -208,7 +208,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void LowTempValidation_ValidTempGiven_ShouldReturnTrue(decimal lowTemp)
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "Boulder",
         State = "NotColorado",
@@ -216,14 +216,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = lowTemp
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "LowTemp"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.LowTemp, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.LowTemp, context, results);
 
       // Assert
       validationResult.Should().BeTrue();
@@ -238,7 +238,7 @@ namespace WeatherReportingTest.Unit.Model.Validation
     public void LowTempValidation_InvalidTempGiven_ShouldReturnFalse(decimal lowTemp)
     {
       // Arrange
-      var dataPointValidState = new WeatherData
+      var datapoint = new WeatherData
       {
         City = "Boulder",
         State = "NotColorado",
@@ -246,14 +246,14 @@ namespace WeatherReportingTest.Unit.Model.Validation
         LowTemp = lowTemp
       };
 
-      var context = new ValidationContext(dataPointValidState, null, null)
+      var context = new ValidationContext(datapoint, null, null)
       {
         MemberName = "LowTemp"
       };
       var results = new List<ValidationResult>();
 
       // Act
-      var validationResult = Validator.TryValidateProperty(dataPointValidState.LowTemp, context, results);
+      var validationResult = Validator.TryValidateProperty(datapoint.LowTemp, context, results);
 
       // Assert
       validationResult.Should().BeFalse();
